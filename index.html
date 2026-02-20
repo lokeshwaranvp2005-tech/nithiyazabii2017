@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  text-align:center;
+  background:linear-gradient(135deg,#ff9a9e,#fecfef);
+  color:white;
+  overflow:hidden;
+}
+
+/* LOGIN PAGE */
+#login{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+input{
+  padding:12px;
+  font-size:18px;
+  border-radius:25px;
+  border:none;
+  text-align:center;
+}
+
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  margin-top:15px;
+  cursor:pointer;
+  background:white;
+  color:#ff4e8a;
+  font-weight:bold;
+  box-shadow:0 0 15px pink;
+}
+
+/* MAIN PAGE */
+#main{
+  display:none;
+  padding-top:40px;
+}
+
+h1{
+  font-size:36px;
+  text-shadow:0 0 20px white;
+}
+
+.slideshow img{
+  width:280px;
+  height:380px;
+  border-radius:20px;
+  margin-top:20px;
+  box-shadow:0 0 25px white;
+  object-fit:cover;
+  transition:opacity 1s ease-in-out;
+}
+
+.heart{
+  font-size:60px;
+  animation:beat 1s infinite;
+}
+
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+/* Floating hearts */
+@keyframes floatUp {
+  0% {transform: translateY(0); opacity:1;}
+  100% {transform: translateY(-100vh); opacity:0;}
+}
+
+/* Proposal Popup */
+#popup{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:white;
+  color:#ff4e8a;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 40px pink;
+  z-index:1000;
+}
+
+#popup button{
+  background:#ff4e8a;
+  color:white;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <h1> oii Drummuu 💖</h1>
+  <input type="password" id="pass" placeholder="MII PASSWORD ?">
+  <button onclick="check()">Unlock My Heart ❤️</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+  <h1> ADVANCE HAPPY BORNDAY DRUMMUU❤️</h1>
+  <div class="heart">❤️</div>
+  <p> " I DON'T WANT SOMEONE LIKE YOU , I WANT YOU ONLY "💕</p>
+
+  <div class="slideshow">
+    <img id="slide" src="photo1.jpeg">
+  </div>
+
+  <button onclick="proposal()"> IN MY STORY YOU WILL ALWAYS BE MY ? 🥹</button>
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+  <h2> أنت أجمل هدية من الهل ... ( You are my favourite gift from Allah..!! ) ❤️</h2>
+  <button onclick="closePopup()">Close 💕</button>
+</div>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<script>
+
+// PASSWORD CHECK
+function check(){
+  var password="2017";  // 🔥 change password here
+  if(document.getElementById("pass").value==password){
+    document.getElementById("login").style.display="none";
+    document.getElementById("main").style.display="block";
+
+    var audio=document.getElementById("music");
+    audio.play().catch(function(e){});
+  }
+  else{
+    alert("Wrong Password 😜 Try Again!");
+  }
+}
+
+// SLIDESHOW (8 PHOTOS)
+var images=[
+  "photo1.jpeg",
+  "photo2.jpeg",
+  "photo3.jpeg",
+  "photo4.jpeg",
+  "photo5.jpeg",
+  "photo6.jpeg",
+  "photo7.jpeg",
+  "photo8.jpeg"
+];
+
+var i=0;
+setInterval(function(){
+  i++;
+  if(i>=images.length) i=0;
+  document.getElementById("slide").src=images[i];
+},3000);
+
+// PROPOSAL POPUP
+function proposal(){
+  document.getElementById("popup").style.display="block";
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+
+// FLOATING HEARTS
+function createHeart(){
+  var heart=document.createElement("div");
+  heart.innerHTML="💗";
+  heart.style.position="fixed";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.top="100vh";
+  heart.style.fontSize=(20+Math.random()*30)+"px";
+  heart.style.animation="floatUp 6s linear";
+  document.body.appendChild(heart);
+
+  setTimeout(function(){
+    heart.remove();
+  },6000);
+}
+
+setInterval(createHeart,400);
+
+</script>
+
+</body>
+</html>
